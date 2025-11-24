@@ -1,20 +1,27 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>AR Demo</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding">
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+  <ion-card (click)="openAR('trex')">
+    <ion-card-header>
+      <ion-card-title>Ver T-Rex</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      Apunta la cámara al marcador Hiro y verás un T-Rex.
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card (click)="openAR('cube')">
+    <ion-card-header>
+      <ion-card-title>Ver Cubo</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      Apunta la cámara al marcador Hiro y verás un cubo 3D.
+    </ion-card-content>
+  </ion-card>
+
 </ion-content>
