@@ -2,13 +2,13 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>AR Scene</title>
+    <title>AR Multi Target</title>
 
     <!-- A-Frame -->
     <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
 
-    <!-- AR.js con soporte de image tracking (NFT) -->
-    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
+    <!-- AR.js marker-based -->
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
 
     <style>
       body {
@@ -20,25 +20,24 @@
 
   <body>
     <a-scene
-      vr-mode-ui="enabled: false;"
-      renderer="logarithmicDepthBuffer: true;"
       embedded
-      arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;"
+      vr-mode-ui="enabled: false"
+      arjs="sourceType: webcam; debugUIEnabled: false;"
     >
-      <!-- Un solo marcador (hiro) -->
+      <!-- Un solo marcador: Hiro -->
       <a-marker preset="hiro">
-        <!-- Modelo 1: T-Rex -->
+        <!-- 1) T-Rex (modelo glTF remoto de AR.js) -->
         <a-entity
-          id="trex-model"
+          id="trex"
           gltf-model="https://raw.githack.com/AR-js-org/AR.js/master/aframe/examples/image-tracking/nft/trex/scene.gltf"
           scale="0.05 0.05 0.05"
           position="0 0 0"
           visible="false"
         ></a-entity>
 
-        <!-- Modelo 2: cubo simple -->
+        <!-- 2) Cubo simple -->
         <a-box
-          id="cube-model"
+          id="cube"
           position="0 0.5 0"
           depth="1"
           height="1"
@@ -46,35 +45,254 @@
           color="#4CAF50"
           visible="false"
         ></a-box>
+
+        <!-- 3) Dragón tipo Juego de Tronos (cono rojo + esfera "cabeza") -->
+        <a-cone
+          id="dragon-got"
+          position="0 0.5 0"
+          radius-bottom="0.8"
+          height="1.5"
+          color="#B71C1C"
+          visible="false"
+        ></a-cone>
+        <a-sphere
+          id="dragon-got-head"
+          position="0 1.4 0"
+          radius="0.3"
+          color="#880E4F"
+          visible="false"
+        ></a-sphere>
+
+        <!-- 4) Dragón tierno tipo "Chimuelo" -->
+        <a-cone
+          id="toothless"
+          position="0 0.5 0"
+          radius-bottom="0.7"
+          height="1.3"
+          color="#000000"
+          visible="false"
+        ></a-cone>
+        <a-sphere
+          id="toothless-head"
+          position="0 1.3 0"
+          radius="0.3"
+          color="#263238"
+          visible="false"
+        ></a-sphere>
+
+        <!-- 5) Messi (futbolista: caja vertical + esfera balón) -->
+        <a-box
+          id="messi"
+          position="0 0.9 0"
+          depth="0.3"
+          height="1.8"
+          width="0.5"
+          color="#1565C0"
+          visible="false"
+        ></a-box>
+        <a-sphere
+          id="messi-ball"
+          position="0.4 0.2 0"
+          radius="0.2"
+          color="#FFFFFF"
+          visible="false"
+        ></a-sphere>
+
+        <!-- 6) Robot -->
+        <a-box
+          id="robot"
+          position="0 0.7 0"
+          depth="0.6"
+          height="1.2"
+          width="0.8"
+          color="#9E9E9E"
+          visible="false"
+        ></a-box>
+        <a-sphere
+          id="robot-head"
+          position="0 1.4 0"
+          radius="0.35"
+          color="#B0BEC5"
+          visible="false"
+        ></a-sphere>
+
+        <!-- 7) Nave espacial -->
+        <a-cylinder
+          id="spaceship"
+          position="0 0.5 0"
+          radius="0.8"
+          height="0.2"
+          color="#673AB7"
+          visible="false"
+        ></a-cylinder>
+        <a-cone
+          id="spaceship-top"
+          position="0 0.9 0"
+          radius-bottom="0.4"
+          height="0.8"
+          color="#9575CD"
+          visible="false"
+        ></a-cone>
+
+        <!-- 8) Casa -->
+        <a-box
+          id="house"
+          position="0 0.5 0"
+          depth="1"
+          height="1"
+          width="1.2"
+          color="#FFCC80"
+          visible="false"
+        ></a-box>
+        <a-cone
+          id="house-roof"
+          position="0 1.1 0"
+          radius-bottom="1"
+          height="0.8"
+          color="#BF360C"
+          visible="false"
+        ></a-cone>
+
+        <!-- 9) Balón -->
+        <a-sphere
+          id="ball"
+          position="0 0.5 0"
+          radius="0.6"
+          color="#FFFFFF"
+          visible="false"
+        ></a-sphere>
+
+        <!-- 10) Árbol -->
+        <a-cylinder
+          id="tree"
+          position="0 0.5 0"
+          radius="0.15"
+          height="1"
+          color="#5D4037"
+          visible="false"
+        ></a-cylinder>
+        <a-sphere
+          id="tree-top"
+          position="0 1.2 0"
+          radius="0.6"
+          color="#2E7D32"
+          visible="false"
+        ></a-sphere>
+
+        <!-- 11) Estrella -->
+        <a-sphere
+          id="star"
+          position="0 0.8 0"
+          radius="0.8"
+          color="#FFD600"
+          visible="false"
+        ></a-sphere>
+
+        <!-- 12) Logo (disco plano) -->
+        <a-cylinder
+          id="logo"
+          position="0 0.5 0"
+          radius="0.8"
+          height="0.05"
+          color="#00BCD4"
+          visible="false"
+        ></a-cylinder>
       </a-marker>
 
       <a-entity camera></a-entity>
     </a-scene>
 
     <script>
-      // Leer el parámetro ?target= de la URL
-      function getTarget() {
+      // Lista de todos los IDs que vamos a ocultar/mostrar
+      const TARGET_IDS = [
+        'trex',
+        'cube',
+        'dragon-got',
+        'dragon-got-head',
+        'toothless',
+        'toothless-head',
+        'messi',
+        'messi-ball',
+        'robot',
+        'robot-head',
+        'spaceship',
+        'spaceship-top',
+        'house',
+        'house-roof',
+        'ball',
+        'tree',
+        'tree-top',
+        'star',
+        'logo',
+      ];
+
+      function getTargetFromUrl() {
         const params = new URLSearchParams(window.location.search);
         return params.get('target') || 'trex';
       }
 
-      window.addEventListener('load', () => {
-        const target = getTarget();
+      function setVisible(targetId) {
+        // 1) Ocultamos todo
+        TARGET_IDS.forEach((id) => {
+          const el = document.getElementById(id);
+          if (el) el.setAttribute('visible', false);
+        });
 
-        const trex = document.getElementById('trex-model');
-        const cube = document.getElementById('cube-model');
-
-        if (target === 'trex') {
-          trex.setAttribute('visible', true);
-          cube.setAttribute('visible', false);
-        } else if (target === 'cube') {
-          trex.setAttribute('visible', false);
-          cube.setAttribute('visible', true);
-        } else {
-          // por defecto T-Rex
-          trex.setAttribute('visible', true);
-          cube.setAttribute('visible', false);
+        // 2) Según el target, encendemos lo que corresponda
+        switch (targetId) {
+          case 'trex':
+            show(['trex']);
+            break;
+          case 'cube':
+            show(['cube']);
+            break;
+          case 'dragon-got':
+            show(['dragon-got', 'dragon-got-head']);
+            break;
+          case 'toothless':
+            show(['toothless', 'toothless-head']);
+            break;
+          case 'messi':
+            show(['messi', 'messi-ball']);
+            break;
+          case 'robot':
+            show(['robot', 'robot-head']);
+            break;
+          case 'spaceship':
+            show(['spaceship', 'spaceship-top']);
+            break;
+          case 'house':
+            show(['house', 'house-roof']);
+            break;
+          case 'ball':
+            show(['ball']);
+            break;
+          case 'tree':
+            show(['tree', 'tree-top']);
+            break;
+          case 'star':
+            show(['star']);
+            break;
+          case 'logo':
+            show(['logo']);
+            break;
+          default:
+            // Si llega algo raro, mostramos T-Rex
+            show(['trex']);
+            break;
         }
+      }
+
+      function show(ids) {
+        ids.forEach((id) => {
+          const el = document.getElementById(id);
+          if (el) el.setAttribute('visible', true);
+        });
+      }
+
+      window.addEventListener('load', () => {
+        const target = getTargetFromUrl();
+        setVisible(target);
       });
     </script>
   </body>

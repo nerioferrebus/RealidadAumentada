@@ -1,26 +1,26 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-title>AR Demo</ion-title>
+    <ion-title>Home AR</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
 
-  <ion-card (click)="openAR('trex')">
+  <ion-card routerLink="/ar/trex">
     <ion-card-header>
       <ion-card-title>Ver T-Rex</ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      Apunta la cámara al marcador Hiro y verás un T-Rex.
+      Apunta al marcador Hiro y verás un T-Rex.
     </ion-card-content>
   </ion-card>
 
-  <ion-card (click)="openAR('cube')">
+  <ion-card routerLink="/ar/cube">
     <ion-card-header>
       <ion-card-title>Ver Cubo</ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      Apunta la cámara al marcador Hiro y verás un cubo 3D.
+      Apunta al marcador Hiro y verás un cubo verde.
     </ion-card-content>
   </ion-card>
 

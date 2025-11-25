@@ -1,6 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
-import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-ar',
@@ -9,22 +9,17 @@ import { ModalController } from '@ionic/angular';
   standalone: false,
 })
 export class ArPage implements OnInit {
-
-  @Input() target: string = 'trex';   // viene desde Home
   safeUrl!: SafeResourceUrl;
 
   constructor(
-    private sanitizer: DomSanitizer,
-    private modalCtrl: ModalController
+    private route: ActivatedRoute,
+    private sanitizer: DomSanitizer
   ) {}
 
   ngOnInit() {
-    const url = `./assets/ar/ar.html?target=${this.target}`;
+    const target = this.route.snapshot.paramMap.get('target') || 'trex';
+    const url = `./assets/ar/ar.html?target=${target}`;
     this.safeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(url);
-  }
-
-  close() {
-    this.modalCtrl.dismiss();
   }
 }
 
